@@ -36,7 +36,6 @@ public class AIplayer : MonoBehaviour
         force = Random.Range(1f, 1.8f) * 350;
 
         StartCoroutine(applyForce());
-        // Check whether AI player scored or not. communicating game Manager script.
 
     }
 

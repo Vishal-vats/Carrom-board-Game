@@ -27,25 +27,31 @@ public class Goal : MonoBehaviour
             {
                 _uiManager.updatePlayer1Score();
                 _collectPuckSound.Play();
+
                 if (other.transform.name == "queen")
                 {
                     _uiManager.updatePlayer1Score();
                 }
+
                 Destroy(other.gameObject);
                 _player._isplayerScored = true;
                 _gameManager.resetisPlayerScoredboolValue(); //reset player position.
 
             }
+
             if(GameObject.FindGameObjectWithTag("AIplayer") != null)
             {
                 _uiManager.updatePlayer2Score();
                 _collectPuckSound.Play();
+
                 if (other.transform.name == "queen")
                 {
                     _uiManager.updatePlayer2Score();
                 }
+
                 Destroy(other.gameObject);
                 _gameManager._isPlayerAIscored = true;
+
                 Invoke("respawnAIplayer", 2f); // Delay in spawning AI player.
                 StartCoroutine(_gameManager.DelayinDestroyingAIPlayerWhenScored()); // Destroy AI player
                 Invoke("resetIsPlayerScoredValue", 3f);

@@ -8,6 +8,7 @@ public class UImanager : MonoBehaviour
 {
     [SerializeField]
     private Text _player1scoreText;
+
     [SerializeField]
     private Text _player2ScoreText;
 

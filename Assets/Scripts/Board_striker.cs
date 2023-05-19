@@ -4,6 +4,7 @@ using UnityEngine;
 public class Board_striker : MonoBehaviour
 {
     public bool _isplayerScored = false;
+    private bool _strikerForce;
 
     [SerializeField]
     private Transform _lookAtPoint;
@@ -20,7 +21,6 @@ public class Board_striker : MonoBehaviour
     private Rigidbody2D _rigid;
     private Vector3 _direction;
     private Vector3 _initialPos;
-    private bool _strikerForce;
     RaycastHit2D hitInfo;
 
     private void Awake()
@@ -38,18 +38,19 @@ public class Board_striker : MonoBehaviour
 
         hitInfo = Physics2D.Raycast(main.ScreenToWorldPoint(Input.mousePosition), Vector3.up);
 
-        //Debug.Log(hitInfo.transform.name);
+        
 
         if (hitInfo.transform.name == "Striker")
         {
             _strikerForce = true;
         }
+
         if (_strikerForce)
         {
             _lookAtPoint.LookAt(hitInfo.point);
             float distance = Vector3.Distance(transform.position, hitInfo.point);
             distance = Mathf.Clamp(distance, 0f, 1.8f);
-            //Debug.Log(distance);
+            
             _lookAtPoint.localScale = new Vector3(distance + 0.5f, distance + 0.5f, distance + 0.5f);
         }
     }
@@ -66,7 +67,7 @@ public class Board_striker : MonoBehaviour
         _lookAtPoint.localScale = Vector3.zero;
 
         StartCoroutine(_slidebar.resetSlidePos()); // reset slider position
-        StartCoroutine(resetStriker());
+        StartCoroutine(resetStriker()); // reset Player Striker Position
         StartCoroutine(CheckIsScored());
 
     }
@@ -76,10 +77,10 @@ public class Board_striker : MonoBehaviour
         yield return new WaitForSeconds(3.7f);
         if(_isplayerScored == false)
         {
-            // cummunicate to Game Manager Script to Instantiate the AI player.
-            _gameManager.SpawnAIplayer();
+            _gameManager.SpawnAIplayer(); // cummunicate to Game Manager Script to Instantiate the AI player.
             _gameManager.deactivatePlayerScript();
             _slidebar.gameObject.SetActive(false);
+            
         }
     }
 
