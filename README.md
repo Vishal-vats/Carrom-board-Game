@@ -20,6 +20,8 @@ Instructions:
 -	If you  pot other pucks you will get 1 point 
 -	You get one more chance after potting any puck
 
+`If you want to try this Game Click on https://github.com/Vishal-vats/Carrom-board-Game/releases/tag/v1.0 and download the Carrom.Game.zip file.`
+
 AI player:
 
 It is a bot which can take simple Shots 
